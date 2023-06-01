@@ -1,0 +1,260 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar dark-mode sidebar-dark-primary elevation-4">
+        <a href="#" class="brand-link">
+            <img src="~/img/p.png" alt="Sp Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">Secel-Partner</span>
+        </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Dashboard -->
+                <li class="nav-item">
+                    <a asp-controller="Dashbroad" asp-action="DashbroadAdmin" class="nav-link " >
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <!-- Partenariat -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-regular fa-handshal fa-handshake nav-icon"></i>
+                        <p>
+                            partenariat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="Partenariat" class="nav-link" >
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Create" asp-controller="Partenariat" class="nav-link" >
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- ContratPartenariat -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-file-contract nav-icon" onclick="WebGLActiveInfo"></i>
+                        <p>
+                            Contrat partenariat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="ContratPartenariat" class="nav-link" onclick="WebGLActiveInfo">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Create" asp-controller="ContratPartenariat" class="nav-link" onclick="WebGLActiveInfo">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+        
+                    </ul>
+                </li>
+                <!-- Partenaires -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class=" fa-solid fa-handshake" onclick="active"></i>
+                        <p>
+                            Partenaires
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview mr-2">
+                        <li class="nav-item">
+                            <a asp-controller="Partenaire" asp-action="Index" class="nav-link" onclick="active">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Partenaire" asp-action="Create" class="nav-link" onclick="active">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+                      </ul>
+                </li>
+                <!-- Contacts -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-address-book nav-icon"></i>
+                        <p>
+                            Contacts
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Contact" asp-action="Index" class="nav-link">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Contact" asp-action="Create" class="nav-link">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Niveau Partenariat -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid fa-arrow-turn-up nav-icon"></i>
+                        <p>
+                            Niveau partenariat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="NiveauPartenariat" asp-action="Index" class="nav-link">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="NiveauPartenariat" asp-action="Create" class="nav-link">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+  
+                    </ul>
+                </li>
+                <!-- Type Partenariat -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa-solid nav-icon fa-text-height"></i>
+                        <p>
+                            Type partenariat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="TypePartenariat" asp-action="Index" class="nav-link">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="TypePartenariat" asp-action="Create" class="nav-link">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+    
+                    </ul>
+                </li>
+                <!-- Chef Partenariat -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class=" fa-solid fa-person-military-to-person nav-icon"></i>
+                        <p>
+                            Chef Partenariat
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Gerant" asp-action="Index" class="nav-link">
+                                <i class="fa-solid fa-list nav-icon"></i>
+                                <p>list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Gerant" asp-action="Create" class="nav-link">
+                                <i class="fa-solid fa-plus nav-icon"></i>
+                                <p>add</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Send Mail  -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-comment "></i>
+                        <p>
+                            Send Mail To 
+                            <i class="fas fa-angle-left right "></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Contact" asp-action="MailContact" class="nav-link">
+                                <i class="fa-regular fa-message nav-icon"></i>
+                                <p>Contact</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="User" asp-action="MailUser" class="nav-link">
+                                <i class="fa-solid fa-message nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Avantages -->
+                <li class="nav-item">
+                    <a asp-controller="Avantage" asp-action="Index" class="nav-link " id="email">
+                        <i class="nav-icon fa-solid fa-area-chart"></i>
+                        <p>
+                            Avantages
+                        </p>
+                    </a>
+                </li>
+                <!-- Conditions -->
+                <li class="nav-item">
+                    <a asp-controller="Condition" asp-action="Index" class="nav-link " id="email">
+                        <i class="nav-icon fas fa-info"></i>
+                        <p>
+                            Conditions
+                        </p>
+                    </a>
+                </li>
+                <!-- Conditions de MAJ -->
+                <li class="nav-item">
+                    <a asp-controller="ConditionRenouv" asp-action="Index"  class="nav-link " id="email">
+                        <i class="fa-solid fa-rotate-right nav-icon"></i>
+                        <p>
+                            Conditions de MAJ
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+

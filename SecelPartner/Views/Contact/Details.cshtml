@@ -1,0 +1,61 @@
+﻿@model SecelPartner.Core.Entities.Contact
+
+@{
+    ViewData["Title"] = "Details contact : " + @Model.Nom + " " + @Model.Nom;
+    ViewData["STitle"] = "Contact / Details";
+}
+
+
+<div>
+    @if (Model.PhotoPath != null)
+    {
+        <img src="@Url.Content($"~/{Model.PhotoPath}")" alt="@Model.Nom @Model.Prenom" class="img-circle img-fluid" wight="60" height="60" />
+    }
+    else
+    {
+        <img src="~/Fichiers/avatar.png" alt="user-avatar" class="img-circle img-fluid" wight="60" height="60" />
+    }
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poste)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poste)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PartenaireId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Partenaire.Nom)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-warning">Back to List</a>
+</div>

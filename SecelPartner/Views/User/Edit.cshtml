@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser
+
+@{
+    ViewData["Title"] = "Edit User";
+    ViewData["STitle"] = "User/Edit";
+}
+
+
+<div class="card-body">
+    
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="input-group mb-3">
+            <input asp-for="FirstName" class="form-control" autocomplete="username" aria-required="true" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        <div class="input-group mb-3">
+            <input asp-for="LastName" class="form-control" autocomplete="username" aria-required="true"  />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+        <div class="input-group mb-3">
+            <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Profil" class="control-label"></label>
+            @if (null != Model.ProfilPath)
+            {
+                <span>
+                    (<a target="_blank" href="@Url.Content($"~/{Model.ProfilPath}")">voir la Profil de @Model.FirstName @Model.LastName</a>)
+                </span>
+            }
+            else
+            {
+                <span>
+                    (<a target="_blank" href="~/Fichiers/avatar.png">voir la Profil de @Model.FirstName @Model.LastName</a>)
+                </span>
+            }
+            <input type="file" asp-for="Profil" class="form-control" />
+            <span asp-validation-for="Profil" class="text-danger"></span>
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-warning">Back to List</a>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

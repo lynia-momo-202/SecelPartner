@@ -1,0 +1,55 @@
+﻿@model SecelPartner.Core.Entities.ContratPartenariat
+
+@{
+    ViewData["Title"] = "Create ContratPartenariat";
+    ViewData["STitle"] = "ContratPartenariat / Create";
+    List<SecelPartner.Core.Entities.Partenaire> list2;
+    list2 = ViewBag.PartenaireList;
+    var listItems2 = list2.Select(item => new SelectListItem() { Text = item.Nom, Value = item.Id.ToString() }).ToList();
+    List<SecelPartner.Core.Entities.Partenariat> list1;
+    list1 = ViewBag.PartenariatList;
+    var listItems1 = list1.Select(item => new SelectListItem() { Text = item.Description, Value = item.Id }).ToList();
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateSign" class="control-label"></label>
+                <input asp-for="DateSign" class="form-control" />
+                <span asp-validation-for="DateSign" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateExpiration" class="control-label"></label>
+                <input asp-for="DateExpiration" class="form-control" />
+                <span asp-validation-for="DateExpiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Montant" class="control-label"></label>
+                <input asp-for="Montant" class="form-control" />
+                <span asp-validation-for="Montant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Titre" class="control-label"></label>
+                <input asp-for="Titre" class="form-control" />
+                <span asp-validation-for="Titre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartenariatId" class="control-label"></label>
+                <select asp-for="PartenariatId" class="form-control" asp-items="listItems1"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartenaireId" class="control-label"></label>
+                <select asp-for="PartenaireId" class="form-control" asp-items="listItems2"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

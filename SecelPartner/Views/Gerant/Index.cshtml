@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SecelPartner.UI.Models.Gerant>
+@{
+    ViewData["Title"] = "List Chef Partenariat";
+    ViewData["STitle"] = "ChefPartenariat / index";
+}
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_debut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContratPartenariat)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_debut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+                @Html.DisplayFor(modelItem => item.User.LastName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContratPartenariat.Titre)
+            </td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">  Edit </a>
+                        @if (this.User.IsInRole("Super Administrateur"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        }
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

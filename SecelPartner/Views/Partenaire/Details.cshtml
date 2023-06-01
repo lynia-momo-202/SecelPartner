@@ -1,0 +1,65 @@
+﻿@model SecelPartner.Core.Entities.Partenaire
+
+@{
+    ViewData["Title"] = "Details Partneraire "+ @Model.Id;
+    ViewData["STitle"] = "Partenaire / Details";
+}
+
+<div>
+    @if (Model.LogoPath != null)
+    {
+        <img src="@Url.Content($"~/{Model.LogoPath}")" alt="@Model.Nom " class="img-circle " wight="60" height="60" />
+    }
+    else
+    {
+        <img src="~/Fichiers/P.png" alt="user-avatar" class="img-circle " wight="60" height="60" />
+    }
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumTel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumTel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Siteweb)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Siteweb)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SecteurAc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SecteurAc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-warning">Back to List</a>
+</div>

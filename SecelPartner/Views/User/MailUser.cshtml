@@ -1,0 +1,62 @@
+﻿@model SecelPartner.Core.Entities.SendEmail
+@{
+    ViewData["Title"] = "Send mail to user";
+    ViewData["STitle"] = "user / SendMail";
+
+    List<SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser> list;
+    list = ViewBag.userList;
+    var listItems = list.Select(item => new SelectListItem() { Text = item.FirstName + " " + item.LastName, Value = item.Email }).ToList();
+
+    SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser Item;
+    Item = ViewBag.user;
+}
+<!-- Default box -->
+<div class="card">
+    <div class="card-body row">
+        <div class="col-5 text-center d-flex align-items-center justify-content-center">
+            <div class="">
+                <img src="~/img/logosecel-removebg-preview.png" alt="secel logo" class="media" />
+                <h2>Secel<strong>SARL</strong></h2>
+                <p class="lead mb-5">
+                    15685 Douala-cameroun<br>
+                    Phone: +237 699417947<br>
+                    <a target="_blank" href="www.secelgroup.com">Our WebSite</a>
+                </p>
+            </div>
+        </div>
+        <form asp-action="Mailuser" method="post" class="col-7">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if (Item != null)
+            {
+                <div class="form-group">
+                    <label class="control-label">TO</label>
+                    <input type="text" asp-for="ToEmail" class="form-control" value="@Item.Email" placeholder="@Item.Email" />
+                    <span asp-validation-for="ToEmail" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label class="control-label">TO</label>
+                    <select asp-for="ToEmail" class="form-control " asp-items="listItems"></select>
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label"> Subject</label>
+                <input type="text" asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea asp-for="Message" id="inputMessage" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Send message">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+

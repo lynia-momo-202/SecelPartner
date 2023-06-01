@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SecelPartner.Core.Entities.ConditionRenouv>
+
+@{
+    ViewData["Title"] = "Liste des Conditions de renouvellement";
+    ViewData["sTitle"] = "ConditionRenouv / Index";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartenariatId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartenariatId)/
+                    @Html.DisplayFor(modelItem => item.Partenariat.Description)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">  Edit </a>
+                        @if (this.User.IsInRole("Super Administrateur"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

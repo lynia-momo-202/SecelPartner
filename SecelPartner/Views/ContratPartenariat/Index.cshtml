@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SecelPartner.Core.Entities.ContratPartenariat>
+
+@{
+    ViewData["Title"] = "List Contrats";
+    ViewData["STitle"] = "Contrat / Index";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSign)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateExpiration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Montant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartenaireId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartenariatId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateSign)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateExpiration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Montant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Partenaire.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Partenariat.Id),
+                    @Html.DisplayFor(modelItem => item.Partenariat.Description)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">  Edit </a>
+                        @if (this.User.IsInRole("Super Administrateur"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        }
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

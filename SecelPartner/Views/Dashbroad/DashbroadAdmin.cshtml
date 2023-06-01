@@ -1,0 +1,493 @@
+﻿@{
+    if (this.User.IsInRole("Administrateur"))
+    {
+        ViewData["Title"] = "Hello Administrateur !!!";
+        ViewData["STitle"] = "Dashboard_Administrateur";
+    }
+    if (this.User.IsInRole("Super Administrateur"))
+    {
+        ViewData["Title"] = "Hello Super Administrateur !!!";
+        ViewData["STitle"] = "Dashboard_SuperAdministrateur";
+    }
+    List<SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser> list1;
+    list1 = ViewBag.UserList;
+    List<SecelPartner.Core.Entities.Partenariat> list2;
+    list2 = ViewBag.PartenariatList;
+    List<SecelPartner.Core.Entities.Partenaire> list3;
+    list3 = ViewBag.PartenaireList;
+    List<SecelPartner.Core.Entities.Contact> list4;
+    list4 = ViewBag.ContactList;
+    List<SecelPartner.Core.Entities.ContratPartenariat> list5;
+    list5 = ViewBag.ContratList;
+    List<SecelPartner.Core.Entities.NiveauPartenariat> list6;
+    list6 = ViewBag.NiveauPartenariatList;
+    List<SecelPartner.Core.Entities.TypePartenariat> list7;
+    list7 = ViewBag.TypePartenariatList;
+    List<string> list8;
+    list8 = ViewBag.Roles;
+}
+<!-- Info boxes -->
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Partenariats</span>
+                <span class="info-box-number">
+                    @list2.Count
+                </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-danger elevation-1">
+                <i class="fa-solid fa-handshake"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text">Partenaires</span>
+                <span class="info-box-number">@list3.Count</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-file-contract "></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Contrats</span>
+                <span class="info-box-number">@list5.Count</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    @if (this.User.IsInRole("Super Administrateur"))
+    {
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Members</span>
+                    <span class="info-box-number">@list1.Count</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    }
+    else if (this.User.IsInRole("Administrateur"))
+    {
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-person-military-to-person"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">@list8.Count  Roles</span>
+                    <span class="info-box-number">
+                        @foreach (var R in list8)
+                        {
+                            <strong> @R ,</strong>
+                        }
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    }
+</div>
+<!-- /.row -->
+<!-- /.row -->
+<!-- Main row -->
+<div class="row">
+    <!-- Left col -->
+    <div class="col-md-8">
+        <!-- /.card -->
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Notifications -->
+                <div class="card direct-chat direct-chat-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Notifications</h3>
+
+                        <div class="card-tools">
+                            <span title="3 New Messages" class="badge badge-warning">3</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <!-- Notification List here -->
+                        <div class="direct-chat-contacts">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <img class="contacts-list-img" src="dist/img/user1-128x128.jpg" alt="User Avatar">
+
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Count Dracula
+                                                <small class="contacts-list-date float-right">2/28/2015</small>
+                                            </span>
+                                            <span class="contacts-list-msg">How have you been? I was...</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Notification Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Sarah Doe
+                                                <small class="contacts-list-date float-right">2/23/2015</small>
+                                            </span>
+                                            <span class="contacts-list-msg">I will be waiting for...</span>
+                                        </div>
+                                        <!-- /.Notification-list-info -->
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.contacts-list -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer text-center">
+                        <a href="#">View All</a>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!--/.direct-chat -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+                <!-- CONTACTS LIST -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Contacts Partenariat</h3>
+
+                        <div class="card-tools">
+                            <span class="badge badge-danger">@list4.Count Contacts</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <ul class="users-list clearfix">
+                            @if (list4.Count <= 8)
+                            {
+                                @foreach (var contact in list4)
+                                {
+                                    <li>
+                                        @if (contact.PhotoPath != null)
+                                        {
+                                            <img src="@Url.Content($"~/{contact.PhotoPath}")" class="float-right" wight="128" height="128" alt="@contact.Nom @contact.Prenom" title="@contact.Nom @contact.Prenom" />
+                                        }
+                                        else
+                                        {
+                                            <small class="float-right">Date: @DateTime.Now</small>
+                                        }
+                                        <a class="users-list-name" href="#">@contact.Nom @contact.Prenom</a>
+                                        <span class="users-list-date">@contact.Partenaire.Nom</span>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                for (int i = list4.Count - 1; i < list4.Count - 7; i--)
+                                {
+                                    var contact = list4[i];
+                                    <li>
+                                        <img src="~/img/p.png" alt="@contact.Nom @contact.Prenom" title="@contact.Nom @contact.Prenom" default="~/img/p.png">
+                                        <a class="users-list-name" href="#">@contact.Nom @contact.Prenom</a>
+                                        <span class="users-list-date">@contact.Partenaire.Nom</span>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                        <!-- /.users-list -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer text-center">
+                        <a asp-action="Index" asp-controller="Contact">View All </a>
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- TABLE: PARTENARIATS -->
+        <div class="card">
+            <div class="card-header border-transparent">
+                <h3 class="card-title">Partenariats</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table m-0">
+                        <thead>
+                            <tr>
+                                <th>Partenariat ID</th>
+                                <th>Description</th>
+                                <th>Niveau</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (list2.Count <= 4)
+                            {
+                                @foreach (var partenariat in list2)
+                                {
+                                    <tr>
+                                        <td>@partenariat.Id</td>
+                                        <td>@partenariat.Description</td>
+                                        <td><span class="badge badge-success">@partenariat.NiveauPartenariat.Designation</span></td>
+                                        <td><span class="badge badge-info">@partenariat.TypePartenariat.Nom</span></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                for (int i = list2.Count - 1; i < list2.Count - 3; i--)
+                                {
+                                    var partenariat = list2[i];
+                                    <tr>
+                                        <td>@partenariat.Id</td>
+                                        <td>@partenariat.Description</td>
+                                        <td><span class="badge badge-success">@partenariat.NiveauPartenariat.Designation</span></td>
+                                        <td><span class="badge badge-info">@partenariat.TypePartenariat.Nom</span></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <a asp-action="Create" asp-controller="Partenariat" class="btn btn-sm btn-info float-left"> New Partenariat</a>
+                <a asp-action="Index" asp-controller="Partenariat" class="btn btn-sm btn-secondary float-right">View All </a>
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+        <!-- TABLE: PARTENAIRES -->
+        <div class="card">
+            <div class="card-header border-transparent">
+                <h3 class="card-title">Partenaires</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table m-0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Site Web</th>
+                                <th>telephone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (list3.Count <= 4)
+                            {
+                                @foreach (var partenaire in list3)
+                                {
+
+                                    <tr>
+                                        <td>@partenaire.Id</td>
+                                        <td>@partenaire.Nom</td>
+                                        <td><a href="@partenaire.Siteweb" target="_blank">@partenaire.Siteweb</a></td>
+                                        <td>@partenaire.NumTel</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                for (int i = list3.Count - 1; i < list3.Count - 3; i--)
+                                {
+                                    var partenaire = list3[i];
+                                    <tr>
+                                        <td>@partenaire.Id</td>
+                                        <td>@partenaire.Nom</td>
+                                        <td><a href="@partenaire.Siteweb" target="_blank">@partenaire.Siteweb</a></td>
+                                        <td>@partenaire.NumTel</td>
+                                    </tr>
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <a asp-action="Create" asp-controller="Partenaire" class="btn btn-sm btn-info float-left"> New Partenariat</a>
+                <a asp-action="Index" asp-controller="Partenaire" class="btn btn-sm btn-secondary float-right">View All </a>
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+
+    <div class="col-md-4">
+        <!-- Info Boxes Style 2 -->
+        <div class="info-box mb-3 bg-warning">
+            <span class="info-box-icon"><i class="fa-solid fa-phone"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Contacts</span>
+                <span class="info-box-number">@list4.Count</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-success">
+            <span class="info-box-icon"><i class="fa-solid fa-arrow-turn-up"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Niveau Pratenariats</span>
+                <span class="info-box-number">@list6.Count</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-danger">
+            <span class="info-box-icon"><i class="fa-solid fa-bell"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Notifications</span>
+                <span class="info-box-number"></span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-info">
+            <span class="info-box-icon"><i class="fa-solid fa-text-height"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Type Partenariat</span>
+                <span class="info-box-number">@list7.Count</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+        <!-- /.card -->
+        <!-- Contrat LIST -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Recently Added Contrats</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <ul class="products-list product-list-in-card pl-2 pr-2">
+                    @if (list5.Count <= 4)
+                    {
+                        foreach (var item in list5)
+                        {
+                            <li class="item">
+                                <div >
+                                    <a href="javascript:void(0)" class="product-title">
+                                        @item.Titre
+                                        <span class="badge badge-warning float-right">@item.Montant</span>
+                                    </a>
+                                    <span class="product-description">
+                                        de @item.DateSign a @item.DateExpiration
+                                    </span>
+                                </div>
+                            </li>
+                        }
+                        <!-- /.item -->
+                    }
+                    else
+                    {
+                        for (int i = list5.Count - 1; i < list5.Count - 3; i--)
+                        {
+                            var item = list5[i];
+                            <li class="item">
+                                <div >
+                                    <a href="javascript:void(0)" class="product-title">
+                                        @item.Titre
+                                        <span class="badge badge-warning float-right">@item.Montant</span>
+                                    </a>
+                                    <span class="product-description">
+                                       de @item.DateSign a @item.DateExpiration
+                                    </span>
+                                </div>
+                            </li>
+                        }
+                        <!-- /.item -->
+                    }
+                </ul>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer text-center">
+                <a asp-action="Index" asp-controller="ContratPartenariat" class="uppercase">View All Contrat</a>
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

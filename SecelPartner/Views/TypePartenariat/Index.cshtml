@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SecelPartner.Core.Entities.TypePartenariat>
+
+@{
+    ViewData["Title"] = "Types de partenariat";
+    ViewData["STitle"] = "Type / Index";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">  Edit </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

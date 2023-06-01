@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SecelPartner.UI.Areas.Identity.Data;
+@model IEnumerable<SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser>
+@{
+    ViewData["Title"] = "User list";
+    ViewData["STitle"] = "user / Index";
+    List<IdentityUserRole<string>> list2;
+    list2 = ViewBag.UserRoles;
+    List<IdentityRole> list1;
+    list1 = ViewBag.Roles;
+}
+<!-- Default box -->
+<div class="card card-solid">
+    <div class="card-body pb-0">
+        <p>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">Create New</a>
+        </p>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                    <div class="card bg-light d-flex flex-fill">
+                        @foreach (var ur in list2)
+                        {
+                            if (ur.UserId == item.Id)
+                            {
+                                @foreach (var r in list1)
+                                {
+                                    if (r.Id == ur.RoleId)
+                                    {
+                                        <div class="card-header text-muted border-bottom-0">
+                                            @r.Name,
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead">
+                                        <b>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b>
+                                    </h2>
+
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small"><span class="fa-li"><i class="fas fa-paper-plane"></i></span> @Html.DisplayNameFor(modelItem => item.Email):@Html.DisplayFor(modelItem => item.Email)</li>
+                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> @Html.DisplayNameFor(model => model.PhoneNumber) #: @Html.DisplayFor(modelItem => item.PhoneNumber)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    @if (item.ProfilPath != null)
+                                    {
+                                        <img src="@Url.Content($"~/{item.ProfilPath}")" alt="@item.FirstName @item.LastName" class="img-circle img-fluid" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Fichiers/avatar.png" alt="user-avatar" class="img-circle img-fluid" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-right">
+                                <a asp-action="MailUser" asp-route-id="@item.Id" class="btn btn-sm bg-teal">
+                                    <i class="fas fa-comments"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-user"></i> View Profile
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-user-pen"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

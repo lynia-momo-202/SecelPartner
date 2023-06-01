@@ -1,0 +1,82 @@
+﻿@model SecelPartner.Core.Entities.Partenaire
+
+@{
+    ViewData["Title"] = "Edit partner " + @Model.Nom ;
+    ViewData["STitle"] = "Partenaire/Edit";
+}
+
+<h4>Partenaire</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adresse" class="control-label"></label>
+                <input asp-for="Adresse" class="form-control" />
+                <span asp-validation-for="Adresse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumTel" class="control-label"></label>
+                <input asp-for="NumTel" class="form-control" />
+                <span asp-validation-for="NumTel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Siteweb" class="control-label"></label>
+                <input asp-for="Siteweb" class="form-control" />
+                <span asp-validation-for="Siteweb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecteurAc" class="control-label"></label>
+                <input asp-for="SecteurAc" class="form-control" />
+                <span asp-validation-for="SecteurAc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Statut" class="control-label"></label>
+                <input asp-for="Statut" class="form-control" />
+                <span asp-validation-for="Statut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                @if (null != Model.LogoPath)
+                {
+                    <span>
+                        (<a target="_blank" href="@Url.Content($"~/{Model.LogoPath}")">voir le Logo de @Model.Nom</a>)
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        (<a target="_blank" href="~/Fichiers/P.png">voir la Logo de @Model.Nom</a>)
+                    </span>
+                }
+                <input type="file" asp-for="Logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ">Back to List</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

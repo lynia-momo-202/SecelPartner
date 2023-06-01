@@ -1,0 +1,54 @@
+﻿@model SecelPartner.Core.Entities.ContratPartenariat
+
+@{
+    ViewData["Title"] = "Details ContratPartenariat";
+    ViewData["Title"] = "ContratPartenariat / Details";
+}
+
+<div>
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateSign)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateSign)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateExpiration)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateExpiration)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Titre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Titre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PartenaireId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PartenaireId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PartenariatId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PartenariatId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success">Edit</a> |
+    <a asp-action="Index" class="btn btn-warning">Back to List</a>|
+    <a asp-action="RapportPartner" asp-route-id="@Model?.Id" class="btn btn-danger"><i class="fa fa-file-pdf"></i>View Rapport</a>
+
+</div>

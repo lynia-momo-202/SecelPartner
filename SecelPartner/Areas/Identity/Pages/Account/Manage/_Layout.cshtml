@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["STitle"] = "Change your account settings";
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+        //Layout = "/Views/Shared/_layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+<partial name="_ManageNav" />
+
+<div class="card-body">
+    <div class="tab-content" id="custom-tabs-two-tabContent">
+        <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+            <!-- Main content -->
+            <div class="hold-transition login-page">
+                <div class="login-box">
+                    <!-- /.login-logo -->
+                    <div class="card card-outline card-primary">
+                        <div class="card-header text-center">
+                            <h2>@ViewData["Title"]</h2>
+                        </div>
+                        <div class="card-body">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+    }

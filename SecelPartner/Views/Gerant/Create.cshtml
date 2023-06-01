@@ -1,0 +1,41 @@
+﻿@model SecelPartner.UI.Models.Gerant
+
+@{
+    ViewData["Title"] = "Create Chef Partenariat";
+    ViewData["STitle"] = "ChefPartenariat / Create";
+    List<SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser> list2;
+    list2 = ViewBag.UserList;
+    var listItems2 = list2.Select(item => new SelectListItem() { Text = item.LastName +" "+item.FirstName, Value = item.Id.ToString()  }).ToList();
+    List<SecelPartner.Core.Entities.ContratPartenariat> list1;
+    list1 = ViewBag.ContratPartenariatList;
+    var listItems1 = list1.Select(item => new SelectListItem() { Text = item.Titre, Value = item.Id.ToString() }).ToList();
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date_debut" class="control-label"></label>
+                <input asp-for="Date_debut" class="form-control" />
+                <span asp-validation-for="Date_debut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContratPartenariatId" class="control-label"></label>
+                <select asp-for="ContratPartenariatId" class="form-control" asp-items="listItems1"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="listItems2"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

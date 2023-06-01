@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - SecelPartner.Web.UI</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed ">
+
+    <div class="wrapper">
+        <!-- Preloader sidebar-collapse -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble img-circle" src="~/img/p.png" alt="secelpartnerslogo" height="60" width="60">
+        </div>
+
+        <partial name="_LoginPartial" />
+        <!-- Navbar -->
+        @if (this.User.IsInRole("Administrateur"))
+        {
+            <partial name="_AdminNav" />
+        }
+        else if (this.User.IsInRole("Chef de partenariat"))
+        {
+            <partial name="_ChefNav" />
+        }
+        else if (this.User.IsInRole("Super Administrateur"))
+        {
+            <partial name="_SuperAdminNav" />
+        }
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">@ViewData["Title"]</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            @if (this.User.IsInRole("Administrateur,Super Administrateur"))
+                            {
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a asp-controller="Dashbroad" asp-action="DashbroadAdmin">Home</a></li>
+                                    <li class="breadcrumb-item active">@ViewData["STitle"]</li>
+                                </ol>
+                            }
+                            else if (this.User.IsInRole("Chef de partenariat"))
+                            {
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a asp-controller="Dashbroad" asp-action="DashbroadChef">Home</a></li>
+                                    <li class="breadcrumb-item active">@ViewData["STitle"]</li>
+                                </ol>
+                            }
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- message -->
+            @if (TempData["infoMessage"] != null)
+            {
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-info"></i> Info !</h5>
+                    @TempData["infoMessage"]
+                </div>
+            }
+            @if (TempData["successMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                    @TempData["successMessage"]
+                </div>
+            }
+            @if (TempData["errorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-ban"></i> Error !</h5>
+                    @TempData["errorMessage"]
+                </div>
+            }
+            @if (TempData["warningMessage"] != null)
+            {
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i> Warning !</h5>
+                    @TempData["warningMessage"]
+                </div>
+            }
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div><!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Des partenariats durables
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2023 <a href="https://secelgroup.com/" target="_blank">SecelGroup</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- fontawesome -->
+    <script defer src="~/plugins/fontawesome-free/js/all.min.js"></script>
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--  App -->
+    <script src="~/js/adminlte.min.js"></script>
+    <!-- secelpartner for demo purposes -->
+    <script src="~/js/demo.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

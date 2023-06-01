@@ -1,0 +1,12 @@
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\bin\Debug\net6.0\SecelPartner.Core.deps.json
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\bin\Debug\net6.0\SecelPartner.Core.dll
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\bin\Debug\net6.0\SecelPartner.Core.pdb
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.csproj.AssemblyReference.cache
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.AssemblyInfoInputs.cache
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.AssemblyInfo.cs
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.csproj.CoreCompileInputs.cache
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.dll
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\refint\SecelPartner.Core.dll
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\SecelPartner.Core.pdb
+C:\Users\SECEL\Desktop\SECEL 2022-2023\projet_after_audit\PS\ProjetSecelPartner\SecelPartner\SecelPartner.Core\obj\Debug\net6.0\ref\SecelPartner.Core.dll
