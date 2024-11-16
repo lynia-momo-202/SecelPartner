@@ -1,0 +1,42 @@
+﻿<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- ASP.NET Core Packages -->
+        <PackageVersion Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+        <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
+        <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.16" />
+
+        <!-- Entity Framework -->
+        <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.16">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageVersion>
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.16" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.16" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageVersion>
+
+        <!-- Configuration -->
+        <PackageVersion Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+
+        <!-- Development Tools -->
+        <PackageVersion Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+
+        <!-- Remove this as we're using the .NET 6 version -->
+        <!-- <PackageVersion Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.3" /> -->
+
+
+        <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="6.0.16" />
+        <PackageVersion Include="Microsoft.Extensions.Identity.Stores" Version="6.0.16" />
+    </ItemGroup>
+</Project>
