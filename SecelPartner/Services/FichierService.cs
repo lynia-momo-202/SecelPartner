@@ -2,7 +2,7 @@
 
 namespace SecelPartner.infrastructure.Services
 {
-    public class FichierService 
+    public class FichierService
     {
         private readonly PathService _pathService;
 
@@ -11,7 +11,7 @@ namespace SecelPartner.infrastructure.Services
             _pathService = pathService;
         }
 
-        public async Task<string> UploadAsync(IFormFile? File ) 
+        public async Task<string> UploadAsync(IFormFile? File)
         {
             var uploadsPath = _pathService.GetUpLoadPath();
 
@@ -27,9 +27,10 @@ namespace SecelPartner.infrastructure.Services
         }
 
         //methode pour la suppression du fichier de lfichier
-        public void DeleteUploadFile(string FilePath) 
+        public void DeleteUploadFile(string FilePath)
         {
-            if (FilePath == null) return;
+            if (FilePath == null)
+                return;
             var fichierPath = _pathService.GetUpLoadPath(Path.GetFileName(FilePath));
 
             if (File.Exists(fichierPath))

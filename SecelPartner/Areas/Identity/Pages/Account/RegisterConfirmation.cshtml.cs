@@ -21,7 +21,10 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
         private readonly UserManager<SecelPartnerUIUser> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<SecelPartnerUIUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(
+            UserManager<SecelPartnerUIUser> userManager,
+            IEmailSender sender
+        )
         {
             _userManager = userManager;
             _sender = sender;
@@ -70,8 +73,15 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    protocol: Request.Scheme);
+                    values: new
+                    {
+                        area = "Identity",
+                        userId = userId,
+                        code = code,
+                        returnUrl = returnUrl,
+                    },
+                    protocol: Request.Scheme
+                );
             }
 
             return Page();

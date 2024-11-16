@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore;
 using SecelPartner.Core.Entities;
 using SecelPartner.UI.Data;
 using SecelPartner.UI.Interfaces;
 using SecelPartner.UI.Models;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Xml.Linq;
 
 namespace SecelPartner.UI.Repositories
 {
@@ -17,20 +17,21 @@ namespace SecelPartner.UI.Repositories
         {
             _context = context;
         }
+
         public async Task Add(Gerant gerant)
         {
             await _context.Gerants.AddAsync(gerant);
             await Save();
         }
+
         public async Task<IEnumerable<Gerant>> Find(Expression<Func<Gerant, bool>> expression)
         {
             return _context.Gerants.Where(expression);
         }
+
         public async Task<IEnumerable<Gerant>> GetAll()
         {
-             var all = _context.Gerants
-                .Include(i => i.ContratPartenariat)
-                .Include(i => i.User);
+            var all = _context.Gerants.Include(i => i.ContratPartenariat).Include(i => i.User);
             return all.ToList();
         }
 
@@ -48,23 +49,25 @@ namespace SecelPartner.UI.Repositories
             }
             await Save();
         }
-       
+
         public List<Gerant> ListItems()
         {
             return _context.Gerants.ToList();
         }
+
         public List<Gerant> ListGerant(int id)
         {
-            List<Gerant>? iduser =new List<Gerant>();
+            List<Gerant>? iduser = new List<Gerant>();
             foreach (var g in ListItems())
             {
-                if(g.ContratPartenariatId == id)
+                if (g.ContratPartenariatId == id)
                 {
                     iduser.Add(g);
                 }
             }
             return iduser;
         }
+
         public async Task Update(Gerant gerant)
         {
             var g = await GetById(gerant.Id);
@@ -76,8 +79,11 @@ namespace SecelPartner.UI.Repositories
             }
             await Save();
         }
-        
-        public List<ContratPartenariat> ListContratGerant(string? id, IEnumerable<ContratPartenariat> contrats)
+
+        public List<ContratPartenariat> ListContratGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats
+        )
         {
             List<Gerant> gerants;
             List<ContratPartenariat>? gerantsContrat = new List<ContratPartenariat>();
@@ -94,12 +100,16 @@ namespace SecelPartner.UI.Repositories
                             gerantsContrat.Add(c);
                         }
                     }
-
                 }
             }
             return gerantsContrat;
         }
-        public List<Partenaire> ListPartenaireGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<Partenaire> partenaires)
+
+        public List<Partenaire> ListPartenaireGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<Partenaire> partenaires
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<Partenaire>? partenaire = new List<Partenaire>();
@@ -107,7 +117,7 @@ namespace SecelPartner.UI.Repositories
             {
                 foreach (var c in contratPartenariats)
                 {
-                    if(p.Id == c.PartenaireId)
+                    if (p.Id == c.PartenaireId)
                     {
                         partenaire.Add(p);
                     }
@@ -116,7 +126,11 @@ namespace SecelPartner.UI.Repositories
             return partenaire;
         }
 
-        public List<Partenariat> ListPartenariatGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<Partenariat> partenariats)
+        public List<Partenariat> ListPartenariatGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<Partenariat> partenariats
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<Partenariat>? partenariat = new List<Partenariat>();
@@ -132,7 +146,12 @@ namespace SecelPartner.UI.Repositories
             }
             return partenariat;
         }
-        public List<Avantage> ListAvantageGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<Avantage> avantages)
+
+        public List<Avantage> ListAvantageGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<Avantage> avantages
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<Avantage>? avantage = new List<Avantage>();
@@ -149,7 +168,11 @@ namespace SecelPartner.UI.Repositories
             return avantage;
         }
 
-        public List<Condition> ListConditionGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<Condition> conditions)
+        public List<Condition> ListConditionGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<Condition> conditions
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<Condition>? condition = new List<Condition>();
@@ -166,7 +189,11 @@ namespace SecelPartner.UI.Repositories
             return condition;
         }
 
-        public List<ConditionRenouv> ListConditionRenouvGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<ConditionRenouv> conditionsRenouv)
+        public List<ConditionRenouv> ListConditionRenouvGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<ConditionRenouv> conditionsRenouv
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<ConditionRenouv>? conditionRenouv = new List<ConditionRenouv>();
@@ -182,7 +209,12 @@ namespace SecelPartner.UI.Repositories
             }
             return conditionRenouv;
         }
-        public List<Contact> ListContactGerant(string? id, IEnumerable<ContratPartenariat> contrats, IEnumerable<Contact> contacts)
+
+        public List<Contact> ListContactGerant(
+            string? id,
+            IEnumerable<ContratPartenariat> contrats,
+            IEnumerable<Contact> contacts
+        )
         {
             List<ContratPartenariat>? contratPartenariats = ListContratGerant(id, contrats);
             List<Contact>? contact = new List<Contact>();
@@ -198,6 +230,7 @@ namespace SecelPartner.UI.Repositories
             }
             return contact;
         }
+
         private async Task Save()
         {
             await _context.SaveChangesAsync();

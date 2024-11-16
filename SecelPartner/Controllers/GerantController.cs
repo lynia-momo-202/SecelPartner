@@ -18,7 +18,12 @@ namespace SecelPartner.UI.Controllers
         private readonly IGerantRepository _gerantRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public GerantController(SecelPartnerUIContext context, IUnitOfWork unitOfWork, IUserRepository userRepository, IGerantRepository gerantRepository)
+        public GerantController(
+            SecelPartnerUIContext context,
+            IUnitOfWork unitOfWork,
+            IUserRepository userRepository,
+            IGerantRepository gerantRepository
+        )
         {
             _userRepository = userRepository;
             _gerantRepository = gerantRepository;
@@ -29,7 +34,7 @@ namespace SecelPartner.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var secelPartnerUIContext = await _gerantRepository.GetAll();
-            return View( secelPartnerUIContext);
+            return View(secelPartnerUIContext);
         }
 
         // GET: Gerant/Details/5
@@ -57,9 +62,13 @@ namespace SecelPartner.UI.Controllers
         {
             try
             {
-                if (_unitOfWork.Contrats.ListItems().Count == 0 || _gerantRepository.ListItems().Count == 0)
+                if (
+                    _unitOfWork.Contrats.ListItems().Count == 0
+                    || _gerantRepository.ListItems().Count == 0
+                )
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un contrat de partenariat avant d'y attribuer un Administrateur";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un contrat de partenariat avant d'y attribuer un Administrateur";
                     return RedirectToAction("Index");
                 }
                 else
@@ -68,7 +77,6 @@ namespace SecelPartner.UI.Controllers
                     ViewBag.UserList = _gerantRepository.ListItems();
                     return View();
                 }
-
             }
             catch (Exception ex)
             {
@@ -109,7 +117,6 @@ namespace SecelPartner.UI.Controllers
         // GET: Gerant/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-
             ViewBag.ContratPartenariatList = _unitOfWork.Contrats.ListItems();
             ViewBag.UserList = _userRepository.ListItems();
             var gerant = await _gerantRepository.GetById(id);
@@ -128,7 +135,7 @@ namespace SecelPartner.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit( Gerant gerant)
+        public async Task<IActionResult> Edit(Gerant gerant)
         {
             try
             {
@@ -153,6 +160,7 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         // GET: Gerant/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -191,7 +199,5 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
-
     }
 }

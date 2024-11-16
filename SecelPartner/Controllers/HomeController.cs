@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SecelPartner.Core.Entities;
 using SecelPartner.Core.Interfaces;
 using SecelPartner.Models;
-using System.Diagnostics;
 
 namespace SecelPartner.Controllers
 {
@@ -11,7 +11,6 @@ namespace SecelPartner.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
-     
 
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
@@ -32,13 +31,14 @@ namespace SecelPartner.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> ContactUs(SendEmail sendEmail)
         {
             sendEmail.Subject = "venant de secelpartner";
-            sendEmail.ToEmail="secelpartner001@gmail.com";
+            sendEmail.ToEmail = "secelpartner001@gmail.com";
             try
-           {
+            {
                 _unitOfWork.Emails.EmailSend(sendEmail);
                 await _unitOfWork.Emails.Add(sendEmail);
                 _unitOfWork.Complete();
@@ -51,10 +51,12 @@ namespace SecelPartner.Controllers
                 return View(sendEmail);
             }
         }
+
         public IActionResult Service()
         {
             return View();
         }
+
         [Authorize]
         public IActionResult Documentation()
         {
@@ -64,7 +66,12 @@ namespace SecelPartner.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(
+                new ErrorViewModel
+                {
+                    RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                }
+            );
         }
     }
 }

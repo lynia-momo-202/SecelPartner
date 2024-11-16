@@ -4,6 +4,6 @@ namespace SecelPartner.Core.Interfaces
 {
     public interface ISendEmailRepository : IGenericRepository<SendEmail>
     {
-        void EmailSend(SendEmail email);    
+        void EmailSend(SendEmail email);
     }
 }

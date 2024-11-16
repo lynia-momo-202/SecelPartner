@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Identity;
 using SecelPartner.UI.Areas.Identity.Data;
-using System.Linq.Expressions;
 
 namespace SecelPartner.UI.Interfaces
 {

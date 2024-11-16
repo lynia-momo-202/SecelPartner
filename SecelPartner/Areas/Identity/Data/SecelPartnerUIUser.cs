@@ -18,15 +18,18 @@ public class SecelPartnerUIUser : IdentityUser
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string? FirstName { get; set; }
+
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string? LastName { get; set; }
+
     [PersonalData]
     [DefaultValue("avatar.png")]
     public string? ProfilName { get; set; }
+
     [DefaultValue("Fichier\avatar.png")]
     public string? ProfilPath { get; set; }
+
     [NotMapped]
     public IFormFile? Profil { get; set; }
 }
-

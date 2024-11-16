@@ -14,6 +14,7 @@ namespace SecelPartner.Core.Entities
         #region proprietes
         [Key]
         public string? Id { get; set; }
+
         [Required]
         [MinLength(15)]
         public string? Description { get; set; }
@@ -21,6 +22,7 @@ namespace SecelPartner.Core.Entities
         #region relations
         [Display(Name = "Niveau Partenariat")]
         public int NiveauPartenariatId { get; set; }
+
         [Required]
         [Display(Name = "Type Partenariat")]
         public int TypePartenariatId { get; set; }

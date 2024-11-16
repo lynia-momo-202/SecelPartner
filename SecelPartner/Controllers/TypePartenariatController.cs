@@ -103,7 +103,7 @@ namespace SecelPartner.UI.Controllers
         // POST: TypePartenariat/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit( [Bind("Id,Nom")] TypePartenariat typePartenariat)
+        public async Task<IActionResult> Edit([Bind("Id,Nom")] TypePartenariat typePartenariat)
         {
             try
             {
@@ -167,6 +167,5 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
     }
 }

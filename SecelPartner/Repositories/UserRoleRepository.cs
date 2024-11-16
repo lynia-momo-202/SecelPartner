@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SecelPartner.UI.Areas.Identity.Data;
 using SecelPartner.UI.Data;
 using SecelPartner.UI.Interfaces;
-using System.Linq.Expressions;
 
 namespace SecelPartner.UI.Repositories
 {
-    public class UserRoleRepository:IUserRoleRepository
+    public class UserRoleRepository : IUserRoleRepository
     {
         private readonly SecelPartnerUIContext _context;
 
@@ -15,6 +15,7 @@ namespace SecelPartner.UI.Repositories
         {
             _context = context;
         }
+
         public async Task Add(IdentityUserRole<string> IdentityUserRole)
         {
             await _context.UserRoles.AddAsync(IdentityUserRole);
@@ -46,6 +47,7 @@ namespace SecelPartner.UI.Repositories
         {
             return _context.UserRoles.ToList();
         }
+
         private async Task Save()
         {
             await _context.SaveChangesAsync();

@@ -7,9 +7,8 @@ namespace SecelPartner.Infrastructure.Repositories
 {
     public class ConditionRepository : GenericRepository<Condition>, IConditionRepository
     {
-        public ConditionRepository(SecelPartnerDataContext Context) : base(Context)
-        {
-        }
+        public ConditionRepository(SecelPartnerDataContext Context)
+            : base(Context) { }
 
         public async Task Update(Condition condition)
         {
@@ -19,6 +18,7 @@ namespace SecelPartner.Infrastructure.Repositories
                 c.Description = condition.Description;
             }
         }
+
         public new async Task<IEnumerable<Condition>> GetAll()
         {
             var All = _context.Conditions.Include(i => i.Partenariat);

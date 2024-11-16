@@ -1,7 +1,6 @@
-﻿
-namespace SecelPartner.Core.Interfaces
+﻿namespace SecelPartner.Core.Interfaces
 {
-    public interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IPartenaireRepository Partenaires { get; }
         IAvantageRepository Avantages { get; }

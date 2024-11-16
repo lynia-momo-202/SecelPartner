@@ -14,14 +14,18 @@ namespace SecelPartner.Core.Entities
         #region proprietes
         [Key]
         public int Id { get; set; }
+
         [Display(Name = "Date de Signature")]
         public DateTime DateSign { get; set; }
+
         [Display(Name = "date d'Expiration")]
         public DateTime DateExpiration { get; set; }
+
         [Required]
-       // [StringLength(50, MinimumLength = 3)]
+        // [StringLength(50, MinimumLength = 3)]
         [DataType(DataType.Currency)]
         public int Montant { get; set; }
+
         [Required]
         [MinLength(10)]
         public string? Titre { get; set; }
@@ -30,6 +34,7 @@ namespace SecelPartner.Core.Entities
         [Required]
         [Display(Name = "Partenariat")]
         public string? PartenariatId { get; set; }
+
         [Required]
         [Display(Name = "Partenaire")]
         public int PartenaireId { get; set; }

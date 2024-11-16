@@ -12,44 +12,40 @@ namespace SecelPartner.Infrastructure.Migrations
                 name: "LogoName",
                 table: "Partenaire",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "LogoPath",
                 table: "Partenaire",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "PhotoName",
                 table: "Contact",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "PhotoPath",
                 table: "Contact",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "LogoName",
-                table: "Partenaire");
+            migrationBuilder.DropColumn(name: "LogoName", table: "Partenaire");
 
-            migrationBuilder.DropColumn(
-                name: "LogoPath",
-                table: "Partenaire");
+            migrationBuilder.DropColumn(name: "LogoPath", table: "Partenaire");
 
-            migrationBuilder.DropColumn(
-                name: "PhotoName",
-                table: "Contact");
+            migrationBuilder.DropColumn(name: "PhotoName", table: "Contact");
 
-            migrationBuilder.DropColumn(
-                name: "PhotoPath",
-                table: "Contact");
+            migrationBuilder.DropColumn(name: "PhotoPath", table: "Contact");
         }
     }
 }

@@ -19,7 +19,10 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
         private readonly UserManager<SecelPartnerUIUser> _userManager;
         private readonly SignInManager<SecelPartnerUIUser> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<SecelPartnerUIUser> userManager, SignInManager<SecelPartnerUIUser> signInManager)
+        public ConfirmEmailChangeModel(
+            UserManager<SecelPartnerUIUser> userManager,
+            SignInManager<SecelPartnerUIUser> signInManager
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;

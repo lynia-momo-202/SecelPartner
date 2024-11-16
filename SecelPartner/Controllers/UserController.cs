@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using SecelPartner.Core.Entities;
 using SecelPartner.Core.Interfaces;
-using SecelPartner.UI.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
-using SecelPartner.UI.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using SecelPartner.infrastructure.Services;
+using SecelPartner.UI.Areas.Identity.Data;
+using SecelPartner.UI.Interfaces;
 
 namespace SecelPartner.UI.Controllers
 {
@@ -18,7 +18,14 @@ namespace SecelPartner.UI.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly FichierService _fichierService;
 
-        public UserController(IUserRoleRepository userRoleRepository, FichierService fichierService ,IUserRepository userRepository, IUnitOfWork unitOfWork, RoleManager<IdentityRole> roleManager, UserManager<SecelPartnerUIUser> userManager)
+        public UserController(
+            IUserRoleRepository userRoleRepository,
+            FichierService fichierService,
+            IUserRepository userRepository,
+            IUnitOfWork unitOfWork,
+            RoleManager<IdentityRole> roleManager,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -26,9 +33,8 @@ namespace SecelPartner.UI.Controllers
             _userRoleRepository = userRoleRepository;
             _userRepository = userRepository;
             _fichierService = fichierService;
-
-
         }
+
         // GET: UserController
         [Authorize(Roles = "Super Administrateur")]
         public async Task<IActionResult> Index()
@@ -38,6 +44,7 @@ namespace SecelPartner.UI.Controllers
             ViewBag.Roles = _roleManager.Roles.ToList();
             return View(user);
         }
+
         // GET: UserController/Details/5
         [Authorize(Roles = "Super Administrateur")]
         public async Task<IActionResult> Details(string id)
@@ -58,6 +65,7 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"User with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         // GET: UserController/Edit/5
         [Authorize(Roles = "Super Administrateur")]
         public async Task<IActionResult> Edit(string id)
@@ -73,6 +81,7 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -81,7 +90,7 @@ namespace SecelPartner.UI.Controllers
         {
             try
             {
-                if ( ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     if (user.Profil != null)
                     {
@@ -106,11 +115,11 @@ namespace SecelPartner.UI.Controllers
                 return View(user);
             }
         }
+
         [Authorize(Roles = "Super Administrateur")]
         // GET: UserController/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-
             try
             {
                 var user = await _userRepository.GetById(id);
@@ -127,6 +136,7 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"Contact with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         // POST: UserController/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -150,9 +160,9 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
         public async Task<IActionResult> MailUser(string id)
         {
-
             try
             {
                 if (_userRepository.ListItems().Count == 0)
@@ -183,6 +193,7 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"user with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         public async Task<IActionResult> MailUser(SendEmail sendEmail)
         {
@@ -194,7 +205,8 @@ namespace SecelPartner.UI.Controllers
                 sendEmail.Name = user.FirstName + " " + user.LastName;
                 if (user.PhoneNumber == null)
                 {
-                    TempData["warningMessage"] = "Votre numero de telephone est requit ... MyAccount>Profil";
+                    TempData["warningMessage"] =
+                        "Votre numero de telephone est requit ... MyAccount>Profil";
                     return RedirectToAction("Index");
                 }
                 sendEmail.Tel = Int32.Parse(user.PhoneNumber);

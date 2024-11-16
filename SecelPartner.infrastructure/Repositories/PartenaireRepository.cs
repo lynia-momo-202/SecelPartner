@@ -7,9 +7,8 @@ namespace SecelPartner.Infrastructure.Repositories
 {
     public class PartenaireRepository : GenericRepository<Partenaire>, IPartenaireRepository
     {
-        public PartenaireRepository(SecelPartnerDataContext Context) : base(Context)
-        {
-        }
+        public PartenaireRepository(SecelPartnerDataContext Context)
+            : base(Context) { }
 
         public async Task Update(Partenaire partenaire)
         {

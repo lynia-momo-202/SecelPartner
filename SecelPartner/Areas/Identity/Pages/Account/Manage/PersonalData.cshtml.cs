@@ -17,7 +17,8 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account.Manage
 
         public PersonalDataModel(
             UserManager<SecelPartnerUIUser> userManager,
-            ILogger<PersonalDataModel> logger)
+            ILogger<PersonalDataModel> logger
+        )
         {
             _userManager = userManager;
             _logger = logger;

@@ -14,6 +14,7 @@ namespace SecelPartner.Core.Entities
         #region proprietes
         [Key]
         public int Id { get; set; }
+
         [Required]
         [MinLength(3)]
         public string? Designation { get; set; }

@@ -25,7 +25,11 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public ConditionController(IUnitOfWork unitOfWork, IGerantRepository gerantRepository, UserManager<SecelPartnerUIUser> userManager)
+        public ConditionController(
+            IUnitOfWork unitOfWork,
+            IGerantRepository gerantRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _gerantRepository = gerantRepository;
             _unitOfWork = unitOfWork;
@@ -40,15 +44,17 @@ namespace SecelPartner.UI.Controllers
             var conditions = await _unitOfWork.Conditions.GetAll();
             return View(conditions);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         public async Task<IActionResult> IndexGerant()
         {
             var Id = _userManager.GetUserId(User);
-        var contrats = await _unitOfWork.Contrats.GetAll();
-        var condition = await _unitOfWork.Conditions.GetAll();
-        var conditions = _gerantRepository.ListConditionGerant(Id, contrats, condition);
+            var contrats = await _unitOfWork.Contrats.GetAll();
+            var condition = await _unitOfWork.Conditions.GetAll();
+            var conditions = _gerantRepository.ListConditionGerant(Id, contrats, condition);
             return View(conditions.Distinct());
         }
+
         // GET: Condition/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -76,7 +82,8 @@ namespace SecelPartner.UI.Controllers
             {
                 if (_unitOfWork.Partenariats.ListPartenariats().Count == 0)
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
                     return RedirectToAction("Index");
                 }
                 else

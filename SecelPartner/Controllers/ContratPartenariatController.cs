@@ -19,7 +19,12 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public ContratPartenariatController(IUnitOfWork unitOfWork, IGerantRepository gerantRepository, IUserRepository userRepository, UserManager<SecelPartnerUIUser> userManager)
+        public ContratPartenariatController(
+            IUnitOfWork unitOfWork,
+            IGerantRepository gerantRepository,
+            IUserRepository userRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
@@ -34,13 +39,14 @@ namespace SecelPartner.UI.Controllers
             var contratsPartenariat = await _unitOfWork.Contrats.GetAll();
             return View(contratsPartenariat);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         // GET: ContratPartenariat_gerant
         public async Task<IActionResult> IndexGerant()
         {
             var Id = _userManager.GetUserId(User);
-            var contrats =await _unitOfWork.Contrats.GetAll();
-            var contratsPartenariat = _gerantRepository.ListContratGerant(Id,contrats);
+            var contrats = await _unitOfWork.Contrats.GetAll();
+            var contratsPartenariat = _gerantRepository.ListContratGerant(Id, contrats);
             return View(contratsPartenariat.Distinct());
         }
 
@@ -63,14 +69,19 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"Contrat Partenariat with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         // GET: ContratPartenariat/Create
         public IActionResult Create()
         {
             try
             {
-                if (_unitOfWork.Partenaires.ListItems().Count == 0 || _unitOfWork.Partenariats.ListPartenariats().Count == 0)
+                if (
+                    _unitOfWork.Partenaires.ListItems().Count == 0
+                    || _unitOfWork.Partenariats.ListPartenariats().Count == 0
+                )
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
                     return RedirectToAction("Index");
                 }
                 else
@@ -79,7 +90,6 @@ namespace SecelPartner.UI.Controllers
                     ViewBag.PartenaireList = _unitOfWork.Partenaires.ListItems();
                     return View();
                 }
-
             }
             catch (Exception ex)
             {
@@ -135,10 +145,12 @@ namespace SecelPartner.UI.Controllers
         }
 
         // POST: ContratPartenariat/Edit/5
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Id,DateSign,Duree,Montant,Titre")] ContratPartenariat contratPartenariat)
+        public async Task<IActionResult> Edit(
+            [Bind("Id,DateSign,Duree,Montant,Titre")] ContratPartenariat contratPartenariat
+        )
         {
             try
             {
@@ -202,6 +214,7 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
         public async Task<IActionResult> RapportPartner(int id)
         {
             try
@@ -240,8 +253,8 @@ namespace SecelPartner.UI.Controllers
                 TempData["errorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
-
         }
+
         public async Task<IActionResult> RapportPrint(int id)
         {
             try
@@ -278,7 +291,6 @@ namespace SecelPartner.UI.Controllers
                 TempData["errorMessage"] = ex.Message;
                 return RedirectToAction(nameof(Index));
             }
-
         }
     }
 }

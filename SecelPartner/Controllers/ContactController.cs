@@ -21,7 +21,12 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public ContactController(IUnitOfWork unitOfWork, FichierService fichierService, UserManager<SecelPartnerUIUser> userManager, IGerantRepository gerantRepository)
+        public ContactController(
+            IUnitOfWork unitOfWork,
+            FichierService fichierService,
+            UserManager<SecelPartnerUIUser> userManager,
+            IGerantRepository gerantRepository
+        )
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
@@ -36,6 +41,7 @@ namespace SecelPartner.UI.Controllers
             var contacts = await _unitOfWork.Contacts.GetAll();
             return View(contacts);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         public async Task<IActionResult> IndexGerant()
         {
@@ -45,6 +51,7 @@ namespace SecelPartner.UI.Controllers
             var contacts = _gerantRepository.ListContactGerant(Id, contrats, contact);
             return View(contacts.Distinct());
         }
+
         // GET: Contact/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -72,7 +79,8 @@ namespace SecelPartner.UI.Controllers
             {
                 if (_unitOfWork.Partenaires.ListItems().Count == 0)
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un partenaire avant de creer un contact";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un partenaire avant de creer un contact";
                     return RedirectToAction("Index");
                 }
                 else
@@ -86,7 +94,6 @@ namespace SecelPartner.UI.Controllers
                 TempData["errorMessage"] = ex;
                 return RedirectToAction("Index");
             }
-
         }
 
         // POST: Contact/Create
@@ -126,7 +133,7 @@ namespace SecelPartner.UI.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var contacts = await _unitOfWork.Contacts.GetById(id);
-                ViewBag.PartenaireList = _unitOfWork.Partenaires.ListItems();
+            ViewBag.PartenaireList = _unitOfWork.Partenaires.ListItems();
             if (contacts != null)
             {
                 return View(contacts);
@@ -229,7 +236,7 @@ namespace SecelPartner.UI.Controllers
                 }
                 else
                 {
-                        ViewBag.ContactList = _unitOfWork.Contacts.ListItems();
+                    ViewBag.ContactList = _unitOfWork.Contacts.ListItems();
                     if (id == 0)
                     {
                         return View();
@@ -250,6 +257,7 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"Contact with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         public async Task<IActionResult> MailContact(SendEmail sendEmail)
         {
@@ -257,10 +265,11 @@ namespace SecelPartner.UI.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
                 sendEmail.FromEmail = user.Email;
-                sendEmail.Name = user.FirstName + " "+user.LastName;
-                if(user.PhoneNumber == null)
+                sendEmail.Name = user.FirstName + " " + user.LastName;
+                if (user.PhoneNumber == null)
                 {
-                    TempData["warningMessage"] = "Votre numero de telephone est requit ... MyAccount>Profil";
+                    TempData["warningMessage"] =
+                        "Votre numero de telephone est requit ... MyAccount>Profil";
                     return RedirectToAction("Index");
                 }
                 sendEmail.Tel = int.Parse(user.PhoneNumber);
@@ -272,11 +281,10 @@ namespace SecelPartner.UI.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.ContactList =  _unitOfWork.Contacts.ListItems();
+                ViewBag.ContactList = _unitOfWork.Contacts.ListItems();
                 TempData["errorMessage"] = ex.Message;
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

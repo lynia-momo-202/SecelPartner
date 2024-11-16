@@ -10,19 +10,23 @@ namespace SecelPartner.Infrastructure.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Avantage_Partenariat_PartenariatId",
-                table: "Avantage");
+                table: "Avantage"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Condition_Partenariat_PartenariatId",
-                table: "Condition");
+                table: "Condition"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_ConditionRenouvelement_Partenariat_PartenariatId",
-                table: "ConditionRenouvelement");
+                table: "ConditionRenouvelement"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_ContratPartenariat_Partenariat_PartenariatId",
-                table: "ContratPartenariat");
+                table: "ContratPartenariat"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -31,7 +35,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
@@ -40,7 +45,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -49,7 +55,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
                 table: "Partenaire",
@@ -57,7 +64,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Designation",
@@ -66,7 +74,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Titre",
@@ -75,7 +84,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -84,7 +94,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Poste",
@@ -93,7 +104,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -102,7 +114,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
@@ -111,7 +124,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -120,7 +134,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -129,7 +144,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
@@ -138,7 +154,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -147,25 +164,28 @@ namespace SecelPartner.Infrastructure.Migrations
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.CreateTable(
                 name: "Email",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table
+                        .Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tel = table.Column<int>(type: "int", nullable: false),
                     ToEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FromEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Email", x => x.Id);
-                });
+                }
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Avantage_Partenariat_PartenariatId",
@@ -173,7 +193,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 column: "PartenariatId",
                 principalTable: "Partenariat",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Condition_Partenariat_PartenariatId",
@@ -181,7 +202,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 column: "PartenariatId",
                 principalTable: "Partenariat",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ConditionRenouvelement_Partenariat_PartenariatId",
@@ -189,7 +211,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 column: "PartenariatId",
                 principalTable: "Partenariat",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ContratPartenariat_Partenariat_PartenariatId",
@@ -197,29 +220,33 @@ namespace SecelPartner.Infrastructure.Migrations
                 column: "PartenariatId",
                 principalTable: "Partenariat",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Avantage_Partenariat_PartenariatId",
-                table: "Avantage");
+                table: "Avantage"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Condition_Partenariat_PartenariatId",
-                table: "Condition");
+                table: "Condition"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_ConditionRenouvelement_Partenariat_PartenariatId",
-                table: "ConditionRenouvelement");
+                table: "ConditionRenouvelement"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_ContratPartenariat_Partenariat_PartenariatId",
-                table: "ContratPartenariat");
+                table: "ContratPartenariat"
+            );
 
-            migrationBuilder.DropTable(
-                name: "Email");
+            migrationBuilder.DropTable(name: "Email");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -227,7 +254,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
@@ -235,7 +263,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -243,7 +272,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
@@ -251,7 +281,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Designation",
@@ -259,7 +290,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Titre",
@@ -267,7 +299,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -275,7 +308,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(450)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Poste",
@@ -283,7 +317,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Nom",
@@ -291,7 +326,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",
@@ -299,7 +335,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -307,7 +344,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(450)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -315,7 +353,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(450)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
@@ -323,7 +362,8 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                oldType: "nvarchar(max)"
+            );
 
             migrationBuilder.AlterColumn<string>(
                 name: "PartenariatId",
@@ -331,35 +371,40 @@ namespace SecelPartner.Infrastructure.Migrations
                 type: "nvarchar(450)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
+                oldType: "nvarchar(450)"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Avantage_Partenariat_PartenariatId",
                 table: "Avantage",
                 column: "PartenariatId",
                 principalTable: "Partenariat",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Condition_Partenariat_PartenariatId",
                 table: "Condition",
                 column: "PartenariatId",
                 principalTable: "Partenariat",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ConditionRenouvelement_Partenariat_PartenariatId",
                 table: "ConditionRenouvelement",
                 column: "PartenariatId",
                 principalTable: "Partenariat",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ContratPartenariat_Partenariat_PartenariatId",
                 table: "ContratPartenariat",
                 column: "PartenariatId",
                 principalTable: "Partenariat",
-                principalColumn: "Id");
+                principalColumn: "Id"
+            );
         }
     }
 }

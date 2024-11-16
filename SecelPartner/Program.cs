@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SecelPartner.Core.Interfaces;
-using SecelPartner.infrastructure.Services;
 using SecelPartner.Infrastructure.DefaultContext;
 using SecelPartner.Infrastructure.Repositories;
+using SecelPartner.infrastructure.Services;
 using SecelPartner.UI.Areas.Identity.Data;
 using SecelPartner.UI.Data;
 using SecelPartner.UI.Interfaces;
@@ -12,21 +12,34 @@ using SecelPartner.UI.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 #region identity
-var connectionString = builder.Configuration.GetConnectionString("SecelPartnerUIContextConnection") ?? throw new InvalidOperationException("Connection string 'SecelPartnerUIContextConnection' not found.");
+var connectionString =
+    builder.Configuration.GetConnectionString("SecelPartnerUIContextConnection")
+    ?? throw new InvalidOperationException(
+        "Connection string 'SecelPartnerUIContextConnection' not found."
+    );
 
 builder.Services.AddDbContext<SecelPartnerUIContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString)
+);
 
-builder.Services.AddDefaultIdentity<SecelPartnerUIUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder
+    .Services.AddDefaultIdentity<SecelPartnerUIUser>(options =>
+        options.SignIn.RequireConfirmedAccount = false
+    )
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SecelPartnerUIContext>();
 #endregion
 
 #region DefaultContext
-var connectionString1 = builder.Configuration.GetConnectionString("SecelPartnerDataContextConnection") ?? throw new InvalidOperationException("Connection string 'SecelPartnerDataContextConnection' not found.");
+var connectionString1 =
+    builder.Configuration.GetConnectionString("SecelPartnerDataContextConnection")
+    ?? throw new InvalidOperationException(
+        "Connection string 'SecelPartnerDataContextConnection' not found."
+    );
 
 builder.Services.AddDbContext<SecelPartnerDataContext>(options =>
-    options.UseSqlServer(connectionString1));
+    options.UseSqlServer(connectionString1)
+);
 #endregion
 
 // Add services to the container.
@@ -60,8 +73,6 @@ app.MapRazorPages();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

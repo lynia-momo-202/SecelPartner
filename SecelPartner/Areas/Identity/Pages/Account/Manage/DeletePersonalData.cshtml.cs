@@ -22,7 +22,8 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account.Manage
         public DeletePersonalDataModel(
             UserManager<SecelPartnerUIUser> userManager,
             SignInManager<SecelPartnerUIUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+            ILogger<DeletePersonalDataModel> logger
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+echo
+echo "🎨 Formatting staged C# files..."
+# Format each file
+dotnet csharpier .
+# Re-stage the formatted file
+git add .
+echo

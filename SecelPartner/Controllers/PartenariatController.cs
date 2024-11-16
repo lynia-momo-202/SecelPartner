@@ -15,29 +15,41 @@ namespace SecelPartner.UI.Controllers
         private readonly IUserRepository _userRepository;
         private readonly UserManager<SecelPartnerUIUser> _userManager;
 
-        public PartenariatController(IUnitOfWork unitOfWork, IGerantRepository gerantRepository, IUserRepository userRepository, UserManager<SecelPartnerUIUser> userManager)
+        public PartenariatController(
+            IUnitOfWork unitOfWork,
+            IGerantRepository gerantRepository,
+            IUserRepository userRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
             _userRepository = userRepository;
             _gerantRepository = gerantRepository;
         }
+
         // GET: Partenariat
         public async Task<IActionResult> Index()
         {
             var partenariat = await _unitOfWork.Partenariats.GetAll();
             return View(partenariat);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         // GET: Partenariat
         public async Task<IActionResult> IndexGerant()
         {
             var Id = _userManager.GetUserId(User);
-            var contrats =await _unitOfWork.Contrats.GetAll();
-            var partenariats =await _unitOfWork.Partenariats.GetAll();
-            var partenariatGerant = _gerantRepository.ListPartenariatGerant(Id, contrats,partenariats);
+            var contrats = await _unitOfWork.Contrats.GetAll();
+            var partenariats = await _unitOfWork.Partenariats.GetAll();
+            var partenariatGerant = _gerantRepository.ListPartenariatGerant(
+                Id,
+                contrats,
+                partenariats
+            );
             return View(partenariatGerant.Distinct());
         }
+
         // GET: Partenariat/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -115,10 +127,10 @@ namespace SecelPartner.UI.Controllers
         }
 
         // POST: Partenariat/Edit/5
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit( Partenariat partenariat)
+        public async Task<IActionResult> Edit(Partenariat partenariat)
         {
             try
             {
@@ -141,6 +153,7 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         // GET: Partenariat/Delete/5
         [Authorize(Roles = "Super Administrateur")]
         public async Task<IActionResult> Delete(string id)

@@ -18,7 +18,10 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
         private readonly SignInManager<SecelPartnerUIUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<SecelPartnerUIUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(
+            SignInManager<SecelPartnerUIUser> signInManager,
+            ILogger<LogoutModel> logger
+        )
         {
             _signInManager = signInManager;
             _logger = logger;

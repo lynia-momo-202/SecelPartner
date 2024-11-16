@@ -4,11 +4,13 @@ using SecelPartner.Infrastructure.DefaultContext;
 
 namespace SecelPartner.Infrastructure.Repositories
 {
-    public class TypePartenariatRepository : GenericRepository<TypePartenariat>, ITypePartenariatRepository
+    public class TypePartenariatRepository
+        : GenericRepository<TypePartenariat>,
+            ITypePartenariatRepository
     {
-        public TypePartenariatRepository(SecelPartnerDataContext Context) : base(Context)
-        {
-        }
+        public TypePartenariatRepository(SecelPartnerDataContext Context)
+            : base(Context) { }
+
         public async Task Update(TypePartenariat typePartenariat)
         {
             var tp = await GetById(typePartenariat.Id);

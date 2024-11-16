@@ -1,20 +1,19 @@
-﻿ using SecelPartner.Core.Entities;
+﻿using System.Net;
+using System.Net.Mail;
+using SecelPartner.Core.Entities;
 using SecelPartner.Core.Interfaces;
 using SecelPartner.Infrastructure.DefaultContext;
-using System.Net;
-using System.Net.Mail;
 
 namespace SecelPartner.Infrastructure.Repositories
 {
     public class SendEmailRepository : GenericRepository<SendEmail>, ISendEmailRepository
     {
-#region constructeur
-        public SendEmailRepository(SecelPartnerDataContext context) : base(context)
-        {
-        }
-#endregion
+        #region constructeur
+        public SendEmailRepository(SecelPartnerDataContext context)
+            : base(context) { }
+        #endregion
 
-#region methodes
+        #region methodes
         /// <summary>
         /// nous avons principalement besoin de lemail de celui qui va recevoir le message , le sujet et le massage en lui meme
         /// </summary>
@@ -26,7 +25,7 @@ namespace SecelPartner.Infrastructure.Repositories
             mail.From = new MailAddress(sendMail.FromEmail);
             mail.To.Add(sendMail.ToEmail);
 
-            mail.Subject = "SecelPartner - "+sendMail.Subject;
+            mail.Subject = "SecelPartner - " + sendMail.Subject;
             //les emails en copie
             //mail.CC.Add("");
             //mail.Bcc.Add("");
@@ -46,14 +45,17 @@ namespace SecelPartner.Infrastructure.Repositories
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
 
             //create network credential
-            NetworkCredential networkCredential = new NetworkCredential("secelpartner001@gmail.com", "bjrftyrwtxbobhvs");
+            NetworkCredential networkCredential = new NetworkCredential(
+                "secelpartner001@gmail.com",
+                "bjrftyrwtxbobhvs"
+            );
 
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = networkCredential;
-            smtpClient.Port = 25;//si on pas precise le port plus haut
+            smtpClient.Port = 25; //si on pas precise le port plus haut
             smtpClient.EnableSsl = true;
             smtpClient.Send(mail);
         }
-#endregion
+        #endregion
     }
 }

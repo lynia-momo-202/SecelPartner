@@ -5,11 +5,13 @@ using SecelPartner.Infrastructure.DefaultContext;
 
 namespace SecelPartner.Infrastructure.Repositories
 {
-    public class ContratPartenariatRepository : GenericRepository<ContratPartenariat>, IContratPartenariatRepository
+    public class ContratPartenariatRepository
+        : GenericRepository<ContratPartenariat>,
+            IContratPartenariatRepository
     {
-        public ContratPartenariatRepository(SecelPartnerDataContext Context) : base(Context)
-        {
-        }
+        public ContratPartenariatRepository(SecelPartnerDataContext Context)
+            : base(Context) { }
+
         public async Task Update(ContratPartenariat contratPartenariat)
         {
             var cp = await GetById(contratPartenariat.Id);
@@ -25,12 +27,13 @@ namespace SecelPartner.Infrastructure.Repositories
                 cp.PartenaireId = contratPartenariat.PartenaireId;
             }
         }
+
         public new async Task<IEnumerable<ContratPartenariat>> GetAll()
         {
-            var All = _context.ContratPartenariats
-                .Include(i => i.Partenariat)
+            var All = _context
+                .ContratPartenariats.Include(i => i.Partenariat)
                 .Include(i => i.Partenaire);
-            return await All.ToListAsync() ;
+            return await All.ToListAsync();
         }
     }
 }

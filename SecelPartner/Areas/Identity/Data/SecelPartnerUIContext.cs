@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SecelPartner.Core.Entities;
 using SecelPartner.UI.Areas.Identity.Data;
 using SecelPartner.UI.Models;
-using SecelPartner.Core.Entities;
 
 namespace SecelPartner.UI.Data;
 
 public class SecelPartnerUIContext : IdentityDbContext<SecelPartnerUIUser>
 {
     public SecelPartnerUIContext(DbContextOptions<SecelPartnerUIContext> options)
-        : base(options)
-    {
-    }
+        : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -20,6 +18,7 @@ public class SecelPartnerUIContext : IdentityDbContext<SecelPartnerUIUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
     public DbSet<Gerant> Gerants { get; set; }
     public DbSet<SecelPartnerUIUser> SecelPartnerUIUsers { get; set; }
     public DbSet<SecelPartner.Core.Entities.ContratPartenariat>? ContratPartenariat { get; set; }

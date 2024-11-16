@@ -19,7 +19,13 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public DashbroadController(UserManager<SecelPartnerUIUser> userManager,IUnitOfWork unitOfWork, SecelPartnerUIContext context, IUserRepository userRepository, IGerantRepository gerantRepository)
+        public DashbroadController(
+            UserManager<SecelPartnerUIUser> userManager,
+            IUnitOfWork unitOfWork,
+            SecelPartnerUIContext context,
+            IUserRepository userRepository,
+            IGerantRepository gerantRepository
+        )
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
@@ -42,19 +48,26 @@ namespace SecelPartner.UI.Controllers
             ViewBag.Roles = await _userManager.GetRolesAsync(user);
             return View();
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         // GET: DashbroadChef_Partenariat
         public async Task<IActionResult> DashbroadChef()
         {
             var user = await _userManager.GetUserAsync(User);
             var contrats = await _unitOfWork.Contrats.GetAll();
-            var partenariats= await _unitOfWork.Partenariats.GetAll();
+            var partenariats = await _unitOfWork.Partenariats.GetAll();
             var partenaires = await _unitOfWork.Partenaires.GetAll();
             var contacts = await _unitOfWork.Contacts.GetAll();
-            ViewBag.ContratList = _gerantRepository.ListContratGerant(user.Id,contrats).Distinct();
-            ViewBag.PartenariatList = _gerantRepository.ListPartenariatGerant(user.Id, contrats,partenariats).Distinct();
-            ViewBag.PartenaireList = _gerantRepository.ListPartenaireGerant(user.Id,contrats,partenaires).Distinct();
-            ViewBag.ContactList = _gerantRepository.ListContactGerant(user.Id,contrats, contacts).Distinct();
+            ViewBag.ContratList = _gerantRepository.ListContratGerant(user.Id, contrats).Distinct();
+            ViewBag.PartenariatList = _gerantRepository
+                .ListPartenariatGerant(user.Id, contrats, partenariats)
+                .Distinct();
+            ViewBag.PartenaireList = _gerantRepository
+                .ListPartenaireGerant(user.Id, contrats, partenaires)
+                .Distinct();
+            ViewBag.ContactList = _gerantRepository
+                .ListContactGerant(user.Id, contrats, contacts)
+                .Distinct();
             ViewBag.NiveauPartenariatList = _unitOfWork.NiveauxPartenariat.ListItems();
             ViewBag.TypePartenariatList = _unitOfWork.TypesPartenariat.ListItems();
             ViewBag.Roles = await _userManager.GetRolesAsync(user);

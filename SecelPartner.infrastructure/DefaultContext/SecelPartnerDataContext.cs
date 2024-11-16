@@ -6,9 +6,8 @@ namespace SecelPartner.Infrastructure.DefaultContext
     public class SecelPartnerDataContext : DbContext
     {
         #region constructeur
-        public SecelPartnerDataContext(DbContextOptions<SecelPartnerDataContext> options) : base(options)
-        {
-        }
+        public SecelPartnerDataContext(DbContextOptions<SecelPartnerDataContext> options)
+            : base(options) { }
         #endregion
         #region dbset
         public DbSet<Partenaire>? Partenaires { get; set; }

@@ -21,7 +21,8 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account.Manage
         public ResetAuthenticatorModel(
             UserManager<SecelPartnerUIUser> userManager,
             SignInManager<SecelPartnerUIUser> signInManager,
-            ILogger<ResetAuthenticatorModel> logger)
+            ILogger<ResetAuthenticatorModel> logger
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -57,10 +58,14 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account.Manage
             await _userManager.SetTwoFactorEnabledAsync(user, false);
             await _userManager.ResetAuthenticatorKeyAsync(user);
             var userId = await _userManager.GetUserIdAsync(user);
-            _logger.LogInformation("User with ID '{UserId}' has reset their authentication app key.", user.Id);
+            _logger.LogInformation(
+                "User with ID '{UserId}' has reset their authentication app key.",
+                user.Id
+            );
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
+            StatusMessage =
+                "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
 
             return RedirectToPage("./EnableAuthenticator");
         }

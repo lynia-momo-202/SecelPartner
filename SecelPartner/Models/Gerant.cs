@@ -1,6 +1,6 @@
-﻿using SecelPartner.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using SecelPartner.Core.Entities;
 using SecelPartner.UI.Areas.Identity.Data;
-using System.ComponentModel.DataAnnotations;
 
 namespace SecelPartner.UI.Models
 {
@@ -15,6 +15,7 @@ namespace SecelPartner.UI.Models
         [Required]
         [Display(Name = "Contrat Partenariat")]
         public int ContratPartenariatId { get; set; }
+
         [Required]
         [Display(Name = "Administrateur Partenariat")]
         public string? UserId { get; set; }

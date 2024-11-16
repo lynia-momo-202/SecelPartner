@@ -26,7 +26,11 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public AvantageController(IUnitOfWork unitOfWork, IGerantRepository gerantRepository, UserManager<SecelPartnerUIUser> userManager)
+        public AvantageController(
+            IUnitOfWork unitOfWork,
+            IGerantRepository gerantRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
@@ -41,6 +45,7 @@ namespace SecelPartner.UI.Controllers
             var avantages = await _unitOfWork.Avantages.GetAll();
             return View(avantages);
         }
+
         // GET: Avantage_gerant
         [Authorize(Roles = "Chef de partenariat")]
         public async Task<IActionResult> IndexGerant()
@@ -51,6 +56,7 @@ namespace SecelPartner.UI.Controllers
             var avantages = _gerantRepository.ListAvantageGerant(Id, contrats, avantage);
             return View(avantages.Distinct());
         }
+
         // GET: Avantage/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -78,7 +84,8 @@ namespace SecelPartner.UI.Controllers
             {
                 if (_unitOfWork.Partenariats.ListPartenariats().Count == 0)
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un partenaire et un partenariat avant de creer un contrat de partenarat";
                     return RedirectToAction("Index");
                 }
                 else

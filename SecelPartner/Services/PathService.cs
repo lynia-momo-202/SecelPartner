@@ -12,6 +12,7 @@ namespace SecelPartner.infrastructure.Services
             _configuration = configuration;
             _env = env;
         }
+
         public string GetUpLoadPath(string? filename = null, bool withWebRootPath = true)
         {
             var pathOptions = new PathOption();
@@ -21,6 +22,5 @@ namespace SecelPartner.infrastructure.Services
                 uploadPath = Path.Combine(uploadPath, filename);
             return withWebRootPath ? Path.Combine(_env.WebRootPath, uploadPath) : uploadPath;
         }
-
     }
 }

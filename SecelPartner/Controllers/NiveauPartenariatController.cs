@@ -62,7 +62,9 @@ namespace SecelPartner.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Designation")] NiveauPartenariat niveauPartenariat)
+        public async Task<IActionResult> Create(
+            [Bind("Id,Designation")] NiveauPartenariat niveauPartenariat
+        )
         {
             try
             {
@@ -106,7 +108,10 @@ namespace SecelPartner.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Designation")] NiveauPartenariat niveauPartenariat)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("Id,Designation")] NiveauPartenariat niveauPartenariat
+        )
         {
             try
             {

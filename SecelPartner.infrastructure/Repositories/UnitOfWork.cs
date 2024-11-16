@@ -20,16 +20,15 @@ namespace SecelPartner.Infrastructure.Repositories
             TypesPartenariat = new TypePartenariatRepository(_context);
             Partenariats = new PartenariatRepository(_context);
             Emails = new SendEmailRepository(_context);
-
         }
 
         public IPartenaireRepository Partenaires { get; private set; }
 
         public IAvantageRepository Avantages { get; private set; }
 
-        public IConditionRepository Conditions {get; private set ;}
+        public IConditionRepository Conditions { get; private set; }
 
-        public IConditionRenouvRepository ConditionsRenouv { get; private set ;}
+        public IConditionRenouvRepository ConditionsRenouv { get; private set; }
 
         public IContactRepository Contacts { get; private set; }
 
@@ -46,6 +45,7 @@ namespace SecelPartner.Infrastructure.Repositories
         {
             return _context.SaveChanges();
         }
+
         public void Dispose()
         {
             _context.Dispose();

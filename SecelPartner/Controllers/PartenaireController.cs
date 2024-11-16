@@ -21,7 +21,12 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public PartenaireController(IUnitOfWork unitOfWork, FichierService fichierService, IGerantRepository gerantRepository, UserManager<SecelPartnerUIUser> userManager)
+        public PartenaireController(
+            IUnitOfWork unitOfWork,
+            FichierService fichierService,
+            IGerantRepository gerantRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _unitOfWork = unitOfWork;
             _fichierService = fichierService;
@@ -32,16 +37,21 @@ namespace SecelPartner.UI.Controllers
         // GET: Partenaire
         public async Task<IActionResult> Index()
         {
-            var partenaires= await _unitOfWork.Partenaires.GetAll();
+            var partenaires = await _unitOfWork.Partenaires.GetAll();
             return View(partenaires);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         public async Task<IActionResult> IndexGerant()
         {
             var Id = _userManager.GetUserId(User);
             var contrats = await _unitOfWork.Contrats.GetAll();
-            var Partenaires =await _unitOfWork.Partenaires.GetAll();
-            var PartenairesGerant = _gerantRepository.ListPartenaireGerant(Id, contrats,Partenaires);
+            var Partenaires = await _unitOfWork.Partenaires.GetAll();
+            var PartenairesGerant = _gerantRepository.ListPartenaireGerant(
+                Id,
+                contrats,
+                Partenaires
+            );
             return View(PartenairesGerant.Distinct());
         }
 
@@ -64,6 +74,7 @@ namespace SecelPartner.UI.Controllers
             TempData["errorMessage"] = $"partenaire with Id = {id} not found";
             return RedirectToAction(nameof(Index));
         }
+
         [Authorize(Roles = "Administrateur")]
         // GET: Partenaire/Create
         [Authorize(Roles = "Administrateur,Super Administrateur")]
@@ -152,6 +163,7 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction("Index");
             }
         }
+
         // GET: Partenaire/Delete/5
         [Authorize(Roles = "Super Administrateur")]
         public async Task<IActionResult> Delete(int id)
@@ -187,7 +199,7 @@ namespace SecelPartner.UI.Controllers
                     _fichierService.DeleteUploadFile(partenaire.LogoPath);
                 }
                 await _unitOfWork.Partenaires.Delete(id);
-                    _unitOfWork.Complete();
+                _unitOfWork.Complete();
                 TempData["successMessage"] = "Partner Delete successfully !!";
                 return RedirectToAction(nameof(Index));
             }
@@ -197,6 +209,5 @@ namespace SecelPartner.UI.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
     }
 }

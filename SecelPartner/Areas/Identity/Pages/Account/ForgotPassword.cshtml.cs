@@ -22,7 +22,10 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
         private readonly UserManager<SecelPartnerUIUser> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<SecelPartnerUIUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(
+            UserManager<SecelPartnerUIUser> userManager,
+            IEmailSender emailSender
+        )
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -69,12 +72,14 @@ namespace SecelPartner.UI.Areas.Identity.Pages.Account
                     "/Account/ResetPassword",
                     pageHandler: null,
                     values: new { area = "Identity", code },
-                    protocol: Request.Scheme);
+                    protocol: Request.Scheme
+                );
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
+                );
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

@@ -12,24 +12,22 @@ namespace SecelPartner.UI.Migrations
                 name: "FirstName",
                 table: "AspNetUsers",
                 type: "nvarchar(100)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "LastName",
                 table: "AspNetUsers",
                 type: "nvarchar(100)",
-                nullable: true);
+                nullable: true
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "FirstName",
-                table: "AspNetUsers");
+            migrationBuilder.DropColumn(name: "FirstName", table: "AspNetUsers");
 
-            migrationBuilder.DropColumn(
-                name: "LastName",
-                table: "AspNetUsers");
+            migrationBuilder.DropColumn(name: "LastName", table: "AspNetUsers");
         }
     }
 }

@@ -13,23 +13,26 @@ namespace SecelPartner.UI.Migrations
                 name: "ProfilName",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "ProfilPath",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true
+            );
 
             migrationBuilder.CreateTable(
                 name: "Gerants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table
+                        .Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date_debut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ContratPartenariatId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -38,41 +41,38 @@ namespace SecelPartner.UI.Migrations
                         name: "FK_Gerants_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id"
+                    );
                     table.ForeignKey(
                         name: "FK_Gerants_ContratPartenariat_ContratPartenariatId",
                         column: x => x.ContratPartenariatId,
                         principalTable: "ContratPartenariat",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+                        onDelete: ReferentialAction.Cascade
+                    );
+                }
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gerants_ContratPartenariatId",
                 table: "Gerants",
-                column: "ContratPartenariatId");
+                column: "ContratPartenariatId"
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gerants_UsersId",
                 table: "Gerants",
-                column: "UserId");
-
-           
+                column: "UserId"
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            
-            migrationBuilder.DropTable(
-                name: "Gerants");
-                  
-            migrationBuilder.DropColumn(
-                name: "ProfilName",
-                table: "AspNetUsers");
+            migrationBuilder.DropTable(name: "Gerants");
 
-            migrationBuilder.DropColumn(
-                name: "ProfilPath",
-                table: "AspNetUsers");
+            migrationBuilder.DropColumn(name: "ProfilName", table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(name: "ProfilPath", table: "AspNetUsers");
         }
     }
 }

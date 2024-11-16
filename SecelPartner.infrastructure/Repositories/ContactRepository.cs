@@ -7,9 +7,9 @@ namespace SecelPartner.Infrastructure.Repositories
 {
     public class ContactRepository : GenericRepository<Contact>, IContactRepository
     {
-        public ContactRepository(SecelPartnerDataContext Context) : base(Context)
-        {
-        }
+        public ContactRepository(SecelPartnerDataContext Context)
+            : base(Context) { }
+
         public async Task Update(Contact contact)
         {
             var c = await GetById(contact.Id);
@@ -28,6 +28,7 @@ namespace SecelPartner.Infrastructure.Repositories
                 c.Partenaire = contact.Partenaire;
             }
         }
+
         public new async Task<IEnumerable<Contact>> GetAll()
         {
             var All = _context.Contacts.Include(i => i.Partenaire);

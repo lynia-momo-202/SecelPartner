@@ -25,7 +25,11 @@ namespace SecelPartner.UI.Controllers
         #endregion
 
         #region constructeur
-        public ConditionRenouvController(IUnitOfWork unitOfWork, IGerantRepository gerantRepository, UserManager<SecelPartnerUIUser> userManager)
+        public ConditionRenouvController(
+            IUnitOfWork unitOfWork,
+            IGerantRepository gerantRepository,
+            UserManager<SecelPartnerUIUser> userManager
+        )
         {
             _gerantRepository = gerantRepository;
             _unitOfWork = unitOfWork;
@@ -40,15 +44,21 @@ namespace SecelPartner.UI.Controllers
             var conditionsRenouv = await _unitOfWork.ConditionsRenouv.GetAll();
             return View(conditionsRenouv);
         }
+
         [Authorize(Roles = "Chef de partenariat")]
         public async Task<IActionResult> IndexGerant()
         {
             var Id = _userManager.GetUserId(User);
             var contrats = await _unitOfWork.Contrats.GetAll();
             var conditionRenouv = await _unitOfWork.ConditionsRenouv.GetAll();
-            var conditionsRenouv = _gerantRepository.ListConditionRenouvGerant(Id, contrats, conditionRenouv);
+            var conditionsRenouv = _gerantRepository.ListConditionRenouvGerant(
+                Id,
+                contrats,
+                conditionRenouv
+            );
             return View(conditionsRenouv.Distinct());
         }
+
         // GET: ConditionRenouv/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -76,7 +86,8 @@ namespace SecelPartner.UI.Controllers
             {
                 if (_unitOfWork.Partenariats.ListPartenariats().Count == 0)
                 {
-                    TempData["warningMessage"] = "Vous devez enregistrer au moins un partenariat avant de creer les avantages lies";
+                    TempData["warningMessage"] =
+                        "Vous devez enregistrer au moins un partenariat avant de creer les avantages lies";
                     return RedirectToAction("Index");
                 }
                 else
