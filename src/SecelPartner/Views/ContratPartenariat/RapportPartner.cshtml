@@ -1,0 +1,286 @@
+﻿@using SecelPartner.Core.Entities;
+@model ContratPartenariat
+@{
+    ViewData["Title"] = "Hello Administrateur !!!";
+    ViewData["STitle"] = "Dashboard_Administrateur";
+    List<SecelPartner.UI.Areas.Identity.Data.SecelPartnerUIUser> users;
+    users = ViewBag.Users;
+    List<Partenaire> list1;
+    list1 = ViewBag.PartenaireList;
+    List<Avantage> list2;
+    list2 = ViewBag.AvantageList;
+    List<Condition> list3;
+    list3 = ViewBag.ConditionList;
+    List<ConditionRenouv> list4;
+    list4 = ViewBag.ConditionRenouvList;
+    List<Partenariat> list5;
+    list5 = ViewBag.PartenariatList;
+    List<Contact> list6;
+    list6 = ViewBag.ContactList;
+    List<NiveauPartenariat> list7;
+    list7 = ViewBag.NiveauPartenariatList;
+    List<TypePartenariat> list8;
+    list8 = ViewBag.TypePartenariatList;
+    int i = 1;
+    Partenariat partenariat = new Partenariat();
+    foreach (var p in list5)
+    {
+        if (p.Id == Model.PartenariatId)
+        {
+            partenariat = p;
+            break;
+        }
+    }
+    Partenaire partenaire = new Partenaire();
+    foreach (var p in list1)
+    {
+        if (p.Id == Model.PartenaireId)
+        {
+            partenaire = p;
+            break;
+        }
+    }
+    NiveauPartenariat niveau = new NiveauPartenariat();
+    foreach (var n in list7)
+    {
+        if (n.Id == partenariat.NiveauPartenariatId)
+        {
+            niveau = n;
+            break;
+        }
+    }
+    TypePartenariat type = new TypePartenariat();
+    foreach (var t in list8)
+    {
+        if (t.Id == partenariat.TypePartenariatId)
+        {
+            type = t;
+            break;
+        }
+    }
+}
+<!-- Main content -->
+<div class="row">
+    <div class="col-12">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="page-header">
+                    <img src="~/img/p.png" class="img-circle" height="30" width="30" /> Secel-Partner.
+                    <small class="float-right">Date:  @DateTime.Now </small>
+                </h2>
+            </div>
+            <!-- /.col -->
+        </div>
+        <br />
+        <br />
+        <!-- info row -->
+        <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+                <img src="~/img/logosecel-removebg-preview.png" wight="128" height="128" />
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+                <strong>  Gestion des partenariats </strong>
+                <hr />
+                <hr />
+                <address>@Model.Titre</address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+                @if (partenaire.LogoPath != null)
+                {
+                    <img src="@Url.Content($"~/{partenaire.LogoPath}")" wight="128" height="128" />
+                }
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- info row -->
+        <br />
+        <br />
+        <div class="row">
+        <ol type="I">
+                <strong>
+                <li>PROFIL</li>
+                </strong>
+            <br />
+            Le tableau ci-dessous présente les informations générales du partenariat existant entre SECEL et @partenaire.Nom
+                <br />
+                <br />
+            <p>
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Informations</th>
+                                    <th>valeur</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Nom du partenaire</th>
+                                    <td>@partenaire.Nom</td>
+                                </tr>
+                                <tr>
+                                    <th>ID du partenariat</th>
+                                    <td>@partenariat.Id</td>
+                                </tr>
+                                <tr>
+                                    <th>Type de partenariat</th>
+                                    <td>@type.Nom</td>
+                                </tr>
+                                <tr>
+                                    <th>Date d’émission </th>
+                                    <td>@Model.DateSign</td>
+                                </tr>
+                                <tr>
+                                    <th>Date d’expiration </th>
+                                    <td>@Model.DateExpiration</td>
+                                </tr>
+                                    @if (users.Count != 0)
+                                    {
+                                    <tr>
+                                        <th>Nom de l’administrateur</th>
+                                            @foreach (var u in users)
+                                            {
+                                            <td>
+                                                    @u.FirstName @u.LastName
+                                            </td>
+                                            }
+                                    </tr>
+                                    <tr>
+                                        <th>E-mail de l’administrateur </th>
+                                        <td>
+                                                @foreach (var u in users)
+                                                {
+                                                    @u.Email
+                                                }
+                                        </td>
+                                    </tr>
+                                    }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </p>
+            <!-- /.row -->
+                @if (list6.Count != 0)
+                {
+                    <strong>
+                <li>CONTACTS</li>
+                    </strong>
+                    <br />
+                <p>
+                        Le tableau ci - dessous présente les personnes(employés d’@partenaire.Nom) avec qui nous pouvons interagir , communiquer dans le cadre de ce partenariat.
+                </p>
+                <br />
+                <br />
+                <div class="col-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nom</th>
+                                <th>Rôle</th>
+                                <th>E-mail</th>
+                                <th>Tél.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @foreach (var c in list6)
+                                {
+                                    if (c.PartenaireId == partenaire.Id)
+                                    {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@c.Nom @c.Prenom</td>
+                                        <td>@c.Poste</td>
+                                        <td>@c.Email</td>
+                                        <td>@c.Tel</td>
+                                    </tr>
+                                        i++;
+                                    }
+                                }
+                        </tbody>
+                    </table>
+                </div>
+                }
+            <br />
+                @if (list2.Count != 0)
+                {
+                    <strong>
+                <li>LES AVANTAGES DU PARTENARIAT</li>
+                    </strong>
+                <br />
+                <p>Le partenariat @Model.Titre nous fait bénéficier des avantages spéciaux suivants :</p>
+                <br />
+                <ul>
+                        @foreach (var avantage in list2)
+                        {
+                            if (avantage.PartenariatId == partenariat.Id)
+                            {
+                            <li>@avantage.Description</li>
+                            }
+                        }
+                </ul>
+                }
+            <br />
+                @if (list3.Count != 0)
+                {
+                    <strong>
+                <li>LES CONDITIONS DU PARTENARIAT ACTUEL</li>
+                    </strong>
+                <br />
+                <p> Afin de satisfaire aux exigences , SECEL doit :</p>
+                <br />
+                <ul>
+                        @foreach (var condition in list3)
+                        {
+                            if (condition.PartenariatId == partenariat.Id)
+                            {
+                            <li>@condition.Description</li>
+                            }
+                        }
+                </ul>
+                }
+            <br />
+                @if (list4.Count != 0)
+                {
+                    <strong>
+                <li>LES CONDITIONS DE RENOUVELLEMENT</li>
+                    </strong>
+                <br />
+                <p>Afin de renouveller le partenariat @Model.Titre , SECEL doit :</p>
+                <br />
+                <ul>
+                        @foreach (var conditionrenouv in list4)
+                        {
+                            if (conditionrenouv.PartenariatId == partenariat.Id)
+                            {
+                            <li>@conditionrenouv.Description</li>
+                            }
+                        }
+                </ul>
+                }
+            <br />
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<!-- Table row -->
+<!-- this row will not appear when printing -->
+<div class="row no-print">
+    <div class="col-12">
+        <a asp-action="RapportPrint" asp-route-id="@Model.Id" rel="noopener" target="_blank" class="btn btn-warning"><i class="fas fa-print"></i> Print</a>
+        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+            <i class="fas fa-download"></i> Generate PDF
+        </button>
+    </div>
+</div>
+</div>
+
+<!-- /.content -->
+<!-- Page specific script -->

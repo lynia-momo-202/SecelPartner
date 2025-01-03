@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.UI", "SecelPartner\SecelPartner.UI.csproj", "{75D246C3-0BE9-4442-848A-F03109514F8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.UI", "src\SecelPartner\SecelPartner.UI.csproj", "{75D246C3-0BE9-4442-848A-F03109514F8C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.Core", "SecelPartner.Core\SecelPartner.Core.csproj", "{DA196557-A11C-4641-A423-D012684DBC95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.Core", "src\SecelPartner.Core\SecelPartner.Core.csproj", "{DA196557-A11C-4641-A423-D012684DBC95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.Infrastructure", "SecelPartner.infrastructure\SecelPartner.Infrastructure.csproj", "{C2410081-AB0F-4B44-817D-3B8827B93DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecelPartner.Infrastructure", "src\SecelPartner.infrastructure\SecelPartner.Infrastructure.csproj", "{C2410081-AB0F-4B44-817D-3B8827B93DF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E09E557E-D43C-4742-BC57-ADD434FBC8E9}"
 EndProject
